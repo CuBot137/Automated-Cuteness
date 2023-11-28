@@ -6,13 +6,16 @@ import com.lynam.Automated.Cuteness.externalApi.QuoteApi;
 import com.lynam.Automated.Cuteness.externalApi.SmsRequest;
 import com.lynam.Automated.Cuteness.externalApi.TwilioApi;
 import com.lynam.Automated.Cuteness.service.QuoteService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Slf4j
 public class QuoteController {
 
     @Autowired
@@ -20,8 +23,9 @@ public class QuoteController {
 
     @Autowired
     private TwilioApi twilioApi;
+    @Autowired
+    private QuoteService quoteService;
 
-    private final QuoteService quoteService;
 
     @Autowired
     public QuoteController(QuoteApi quoteApi, TwilioApi twilioApi, QuoteService quoteService) {
@@ -36,22 +40,18 @@ public class QuoteController {
         System.out.println(apiResponse);
 
         ObjectMapper mapper = new ObjectMapper();
-//        JsonNode jsonNode = mapper.readTree(apiResponse);
+//      JsonNode jsonNode = mapper.readTree(apiResponse);
         String quote = mapper.readTree(apiResponse).findValue("content").asText();
         String author = mapper.readTree(apiResponse).findValue("author").asText();
         return "Quote: " + quote +" Author: "+author;
     }
 
-//    @GetMapping("/sendMessage")
-//    public ResponseEntity<String> sendMessage() throws JsonProcessingException {
-//        String message = getQuote();
-//    //        twilioApi.twilioApiCall(message);
-//        return new ResponseEntity<String>("Message sent successfully", HttpStatus.OK);
-//    }
 
     @PostMapping("sms")
-    public void sendSms (@RequestBody SmsRequest smsRequest){
-        quoteService.sendSms(smsRequest);
+    public String sendSms (@RequestBody SmsRequest smsRequest){
+        log.info("sms Started sendRequest: "+smsRequest.toString());
+
+        return quoteService.sendSms(smsRequest.getDestinationSmsNumber(), smsRequest.getSmsMessage());
 
     }
 }
