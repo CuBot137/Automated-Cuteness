@@ -20,13 +20,13 @@ public class QuoteService {
 //    }
 
     // Values are in application.properties
-    @Value("${TWILIO_ACCOUNT_SID}")
+    @Value("${spring.datasource.SID}")
     String ACCOUNT_SID;
-    @Value("${TWILIO_AUTH_TOKEN}")
+    @Value("${spring.datasource.authToken}")
     String AUTH_TOKEN;
     @Value("${TWILIO_OUTGOING_SMSNUMBER}")
     String OUTGOING_SMSNUMBER;
-    @Value("${TWILIO_SENDER_NUMBER}")
+    @Value("${spring.datasource.My_Number}")
     String SENDER_NUMBER;
 
 
