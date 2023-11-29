@@ -7,14 +7,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SmsRequest {
     private String destinationSmsNumber;
-    private String smsMessage;
+//    private String smsMessage;
 
 
     @Override
     public String toString() {
         return "SmsRequest{" +
-                "phoneNumber='" + destinationSmsNumber + '\'' +
-                ", message='" + smsMessage + '\'' +
+                "destinationSmsNumber='" + destinationSmsNumber + '\'' +
                 '}';
     }
 }
