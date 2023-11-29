@@ -6,6 +6,7 @@ import com.lynam.Automated.Cuteness.externalApi.QuoteApi;
 import com.lynam.Automated.Cuteness.service.QuoteService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,7 +42,10 @@ public class QuoteController {
     }
 
 
+
+    // cron will run this method every day at 12 noon
     @PostMapping("/sms")
+    @Scheduled(cron = "0 0 12 * * ?")
     public String sendSms () throws JsonProcessingException {
             String message = getQuote();
             return quoteService.sendSms(message);
