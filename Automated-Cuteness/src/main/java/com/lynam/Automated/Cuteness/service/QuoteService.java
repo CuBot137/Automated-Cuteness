@@ -8,25 +8,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-@Service
 @Slf4j
+@Service
 public class QuoteService {
 
-//    private final SmsSender SmsSender;
-//
-//    @Autowired
-//    public QuoteService(@Qualifier("twilio") TwilioSmsSender twilioSmsSender) {
-//        this.SmsSender = twilioSmsSender;
-//    }
-
     // Values are in application.properties
-    @Value("${spring.datasource.SID}")
+    @Value("${Twilio_SID}")
     String ACCOUNT_SID;
-    @Value("${spring.datasource.authToken}")
+    @Value("${Twilio_Auth}")
     String AUTH_TOKEN;
     @Value("${TWILIO_OUTGOING_SMSNUMBER}")
     String OUTGOING_SMSNUMBER;
-    @Value("${spring.datasource.My_Number}")
+    @Value("${My_Number}")
     String SENDER_NUMBER;
 
 

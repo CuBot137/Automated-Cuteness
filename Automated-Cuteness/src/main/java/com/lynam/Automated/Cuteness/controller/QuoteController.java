@@ -17,17 +17,9 @@ public class QuoteController {
 
     @Autowired
     private QuoteApi quoteApi;
-
-
     @Autowired
     private QuoteService quoteService;
 
-
-    @Autowired
-    public QuoteController(QuoteApi quoteApi,QuoteService quoteService) {
-        this.quoteApi = quoteApi;
-        this.quoteService = quoteService;
-    }
 
     @GetMapping("/quote")
     public String getQuote() throws JsonProcessingException {
