@@ -9,7 +9,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 // Allows methods to be run at specific times
 @EnableScheduling
-@PropertySource("classpath:application.properties")
+//@PropertySource("classpath:application.properties")
+//@ComponentScan(basePackages = {"com.lynam.Automated.Cuteness.*"})
 public class AutomatedCutenessApplication {
 
 	public static void main(String[] args) {

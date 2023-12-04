@@ -28,7 +28,7 @@ public class QuoteService {
     }
 
     // When the app is built it will log this information
-    @PostConstruct
+//    @PostConstruct
     private void setup(){
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
     }
