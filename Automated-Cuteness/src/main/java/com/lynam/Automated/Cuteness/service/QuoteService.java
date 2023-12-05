@@ -23,12 +23,14 @@ public class QuoteService {
     String SENDER_NUMBER;
 
 
+    // When the app is built it will log this information
     public QuoteService(){
         log.info("Creating class QuoteService");
     }
 
-    // When the app is built it will log this information
-//    @PostConstruct
+
+    // Twilio will be initialised after the program starts up
+    @PostConstruct
     private void setup(){
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
     }
