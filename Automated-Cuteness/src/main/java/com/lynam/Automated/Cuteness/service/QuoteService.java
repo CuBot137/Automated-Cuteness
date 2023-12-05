@@ -1,16 +1,19 @@
 package com.lynam.Automated.Cuteness.service;
 
+import com.lynam.Automated.Cuteness.repo.TheRepo;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import com.twilio.Twilio;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
 public class QuoteService {
+
 
     // Values are in application.properties
     @Value("${Twilio_SID}")

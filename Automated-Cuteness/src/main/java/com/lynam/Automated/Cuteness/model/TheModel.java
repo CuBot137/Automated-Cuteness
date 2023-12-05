@@ -12,4 +12,5 @@ public class TheModel {
     @GeneratedValue
     private Long id;
     private String quote;
+    private String author;
 }
