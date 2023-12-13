@@ -2,7 +2,6 @@ package com.lynam.Automated.Cuteness.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.exc.InvalidNullException;
 import com.lynam.Automated.Cuteness.externalApi.QuoteApi;
 import com.lynam.Automated.Cuteness.model.TheModel;
 import com.lynam.Automated.Cuteness.repo.TheRepo;
@@ -17,8 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 public class QuoteController {
-
-
     @Autowired
     private QuoteApi quoteApi;
     @Autowired
@@ -65,4 +62,8 @@ public class QuoteController {
     public String mainPage(){
         return "Main.html";
     }
+
+
+
+
 }
