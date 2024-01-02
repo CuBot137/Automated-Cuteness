@@ -3,8 +3,6 @@ package com.lynam.Automated.Cuteness.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lynam.Automated.Cuteness.externalApi.QuoteApi;
-import com.lynam.Automated.Cuteness.model.TheModel;
-import com.lynam.Automated.Cuteness.repo.TheRepo;
 import com.lynam.Automated.Cuteness.service.QuoteService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +18,11 @@ public class QuoteController {
     private QuoteApi quoteApi;
 //    @Autowired
     private final QuoteService quoteService;
-    @Autowired
-    private TheRepo theRepo;
 
-    public QuoteController(QuoteApi quoteApi, QuoteService quoteService, TheRepo theRepo) {
+
+    public QuoteController(QuoteApi quoteApi, QuoteService quoteService) {
         this.quoteApi = quoteApi;
         this.quoteService = quoteService;
-        this.theRepo = theRepo;
     }
 
 
@@ -42,10 +38,7 @@ public class QuoteController {
                 String author = mapper.readTree(apiResponse).findValue("author").asText();
 
                 // Save quote and author to database
-                TheModel theModel = new TheModel();
-                theModel.setQuote(quote);
-                theModel.setAuthor(author);
-                theRepo.save(theModel);
+
                 return "Quote: " + quote + " Author: " + author;
             } catch (Exception e) {
                 System.out.println("Oops there was an error! " + e);
