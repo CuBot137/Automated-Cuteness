@@ -18,10 +18,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class QuoteController {
     @Autowired
     private QuoteApi quoteApi;
-    @Autowired
-    private QuoteService quoteService;
+//    @Autowired
+    private final QuoteService quoteService;
     @Autowired
     private TheRepo theRepo;
+
+    public QuoteController(QuoteApi quoteApi, QuoteService quoteService, TheRepo theRepo) {
+        this.quoteApi = quoteApi;
+        this.quoteService = quoteService;
+        this.theRepo = theRepo;
+    }
 
 
     @GetMapping("/quote")

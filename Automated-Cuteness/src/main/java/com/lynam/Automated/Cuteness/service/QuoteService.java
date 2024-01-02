@@ -1,13 +1,12 @@
 package com.lynam.Automated.Cuteness.service;
 
+import com.lynam.Automated.Cuteness.twilio.TwilioSID;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import com.twilio.Twilio;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 
@@ -18,25 +17,19 @@ public class QuoteService {
 
     // Values are in application.properties
 
-    @Autowired
-    private String twilioBean;
-
-//    @Value("${Twilio_SID}")
-//    String ACCOUNT_SID;
-    @Value("${Twilio_Auth}")
-    String AUTH_TOKEN;
-    @Value("${TWILIO_OUTGOING_SMSNUMBER}")
-    String OUTGOING_SMSNUMBER;
-    @Value("${My_Number}")
-    String SENDER_NUMBER;
 
 
+    private final TwilioSID twilioSID = new TwilioSID();
 
+    String twilioBean = twilioSID.getSIDTwilio();
+    String AUTH_TOKEN = twilioSID.getAuth();
+    String OUTGOING_SMSNUMBER = twilioSID.getOutgoingNumber();
+    String SENDER_NUMBER = twilioSID.getNumber();
 
-//    // When the app is built it will log this information
-//    public QuoteService(){
-//        log.info("Creating class QuoteService");
-//    }
+    // When the app is built it will log this information
+    public QuoteService(){
+        log.info("Creating class QuoteService");
+    }
 
 
     // Twilio will be initialised after the program starts up
@@ -51,6 +44,7 @@ public class QuoteService {
                 new PhoneNumber(SENDER_NUMBER),
                 new PhoneNumber(OUTGOING_SMSNUMBER),
                 smsMessage).create();
+        System.out.println("THIS IS THE VALUE OF TWILIOBEAN "+twilioBean);
         return message.getStatus().toString();
     }
 }

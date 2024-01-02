@@ -1,29 +1,34 @@
 package com.lynam.Automated.Cuteness;
 
-import com.lynam.Automated.Cuteness.config.ProjectConfig;
-import com.lynam.Automated.Cuteness.controller.QuoteController;
-import com.lynam.Automated.Cuteness.service.QuoteService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
+
+import java.util.Arrays;
 
 
 // Allows methods to be run at specific times
 @EnableScheduling
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.lynam.Automated.Cuteness.config"})
 public class AutomatedCutenessApplication {
-
+	private static ApplicationContext applicationContext;
 	public static void main(String[] args) {
-		SpringApplication.run(AutomatedCutenessApplication.class, args);
 
-		// Messing around with creating beans
-//		var context = new AnnotationConfigApplicationContext(ProjectConfig.class);
-//		QuoteService s = context.getBean(QuoteService.class);
-//		System.out.println();
-
+		applicationContext = SpringApplication.run(AutomatedCutenessApplication.class, args);
+//		displayAppBeans();
 	}
+
+//	public static void displayAppBeans(){
+//		String[] allBeanNames = applicationContext.getBeanDefinitionNames();
+//		for(String beanName : allBeanNames){
+//			System.out.println(beanName);
+//		}
+//	}
 
 }
