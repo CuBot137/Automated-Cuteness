@@ -8,8 +8,6 @@ import org.springframework.context.annotation.Configuration;
 public class SmsRequest {
     private String destinationSmsNumber;
 //    private String smsMessage;
-
-
     @Override
     public String toString() {
         return "SmsRequest{" +

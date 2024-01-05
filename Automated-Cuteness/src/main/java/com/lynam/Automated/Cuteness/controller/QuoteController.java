@@ -19,12 +19,10 @@ public class QuoteController {
 //    @Autowired
     private final QuoteService quoteService;
 
-
     public QuoteController(QuoteApi quoteApi, QuoteService quoteService) {
         this.quoteApi = quoteApi;
         this.quoteService = quoteService;
     }
-
 
     @GetMapping("/quote")
     public String getQuote() throws JsonProcessingException {
@@ -38,6 +36,7 @@ public class QuoteController {
                 String author = mapper.readTree(apiResponse).findValue("author").asText();
 
                 // Save quote and author to database
+                quoteService.saveQuote(quote, author);
 
                 return "Quote: " + quote + " Author: " + author;
             } catch (Exception e) {
@@ -55,7 +54,6 @@ public class QuoteController {
             String message = getQuote();
             return quoteService.sendSms(message);
     }
-
 
     @GetMapping("/main")
     public String mainPage(){
