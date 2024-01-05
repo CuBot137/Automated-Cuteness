@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.lynam</groupId>
     <artifactId>Automated-Cuteness</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>Automated-Cuteness</name>
     <description>Automated cute messages</description>
     <packaging>jar</packaging>
@@ -91,6 +91,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-docker-compose</artifactId>
         </dependency>
     </dependencies>
     <build>
