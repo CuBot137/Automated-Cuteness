@@ -4,7 +4,6 @@ networks:
   default:
     driver: bridge
 
-
 services:
 
   db:
@@ -13,9 +12,9 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USERNAME: postgres
-      POSTGRES_PASSWORD: spoon
-      POSTGRES_DB: test
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
 
   api:
     container_name: automated-cuteness
@@ -28,7 +27,7 @@ services:
       - "8080:8080"
     depends_on:
       - db
-    restart: "no"
+    restart: no
 
 #  pgadmin:
 #    container_name: pgadmin4
@@ -39,5 +38,3 @@ services:
 #      PGADMIN_DEFAULT_PASSWORD: root
 #    ports:
 #      - "5050:80"
-
-
