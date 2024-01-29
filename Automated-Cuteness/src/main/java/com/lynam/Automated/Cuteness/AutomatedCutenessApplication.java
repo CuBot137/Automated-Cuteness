@@ -18,14 +18,7 @@ public class AutomatedCutenessApplication {
 	public static void main(String[] args) {
 
 		applicationContext = SpringApplication.run(AutomatedCutenessApplication.class, args);
-//		displayAppBeans();
 	}
 
-//	public static void displayAppBeans(){
-//		String[] allBeanNames = applicationContext.getBeanDefinitionNames();
-//		for(String beanName : allBeanNames){
-//			System.out.println(beanName);
-//		}
-//	}
 
 }

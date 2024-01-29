@@ -14,7 +14,6 @@ import lombok.*;
 @NoArgsConstructor
 @Data
 public class TheModel {
-
     @Id
     @GeneratedValue
     private Long id;

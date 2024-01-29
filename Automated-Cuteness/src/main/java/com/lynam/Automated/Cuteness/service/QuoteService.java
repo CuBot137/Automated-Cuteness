@@ -38,7 +38,7 @@ public class QuoteService {
                 new PhoneNumber(SENDER_NUMBER),
                 new PhoneNumber(OUTGOING_SMSNUMBER),
                 smsMessage).create();
-        System.out.println("THIS IS THE VALUE OF TWILIOBEAN "+twilioBean);
+        //System.out.println("THIS IS THE VALUE OF TWILIOBEAN "+twilioBean);
         return message.getStatus().toString();
     }
 

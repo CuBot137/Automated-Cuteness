@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class QuoteController {
     @Autowired
     private QuoteApi quoteApi;
-//    @Autowired
+
     private final QuoteService quoteService;
 
     public QuoteController(QuoteApi quoteApi, QuoteService quoteService) {
@@ -28,16 +28,13 @@ public class QuoteController {
     public String getQuote() throws JsonProcessingException {
         String apiResponse = quoteApi.callQuoteApi();
         System.out.println(apiResponse);
-
         if (apiResponse != null) {
             try {
                 ObjectMapper mapper = new ObjectMapper();
                 String quote = mapper.readTree(apiResponse).findValue("content").asText();
                 String author = mapper.readTree(apiResponse).findValue("author").asText();
-
                 // Save quote and author to database
                 quoteService.saveQuote(quote, author);
-
                 return "Quote: " + quote + " Author: " + author;
             } catch (Exception e) {
                 System.out.println("Oops there was an error! " + e);

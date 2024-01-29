@@ -9,6 +9,7 @@ public class QuoteApi {
     public String callQuoteApi(){
         String uri = "https://api.quotable.io/random";
         RestTemplate restTemplate = new RestTemplate();
+        // Making a get request to the API
         String result = restTemplate.getForObject(uri, String.class);
         if (result != null) {
             return result;
