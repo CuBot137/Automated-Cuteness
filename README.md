@@ -25,7 +25,7 @@ To use this application, you must:
 If my server is still hosted, you can try to make a call to https://automated-cuteness.onrender.com/sms for the fun of it.
 
 ## Response Example 
-{"_id":"OawbCWOFWi","content":"The doorstep to the temple of wisdom is a knowledge of our own ignorance.","author":"Benjamin Franklin","tags":["Wisdom"],"authorSlug":"benjamin-franklin","length":73,"dateAdded":"2021-01-30","dateModified":"2023-04-14"}
+Quote:The doorstep to the temple of wisdom is a knowledge of our own ignorance. Author:Benjamin Franklin.
 
 ## What I Learned
 I encountered several learning opportunities throughout this project:
