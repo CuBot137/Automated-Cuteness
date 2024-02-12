@@ -3,6 +3,8 @@ package com.lynam.Automated.Cuteness.externalApi;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+
+
 @Component
 public class QuoteApi {
     // An api I found on GitHub that generates a random quote

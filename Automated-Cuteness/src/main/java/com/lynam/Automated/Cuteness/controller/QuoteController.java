@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lynam.Automated.Cuteness.externalApi.QuoteApi;
 import com.lynam.Automated.Cuteness.service.QuoteService;
+import com.lynam.Automated.Cuteness.valentine.Valentine;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -19,11 +20,20 @@ public class QuoteController {
 
     private final QuoteService quoteService;
 
-    public QuoteController(QuoteApi quoteApi, QuoteService quoteService) {
+    @Autowired
+    private Valentine valentine;
+
+    public QuoteController(QuoteApi quoteApi, QuoteService quoteService, Valentine valentine) {
         this.quoteApi = quoteApi;
         this.quoteService = quoteService;
+        this.valentine = valentine;
     }
 
+    /**
+     * Generates the quote, parses through the java response.
+     * @return Formatted quote and author
+     * @throws JsonProcessingException
+     */
     @GetMapping("/quote")
     public String getQuote() throws JsonProcessingException {
         String apiResponse = quoteApi.callQuoteApi();
@@ -45,12 +55,32 @@ public class QuoteController {
         }
     }
     // cron will run this method every day at 12 noon
+
     @PostMapping("/sms")
     @Scheduled(cron = "0 0 12 * * ?")
     public String sendSms () throws JsonProcessingException {
             String message = getQuote();
             return quoteService.sendSms(message);
     }
+
+//    @PostMapping("/poop")
+//    @Scheduled(cron = "0 0 12 * * ?")
+//    public String sendTest () throws JsonProcessingException {
+//        String message = "Diggy Diggy Hole";
+//        return quoteService.sendSms(message);
+//    }
+
+    @Scheduled(cron = "0 0 8 * * *")
+    @Scheduled(cron = "0 0 10 * * *")
+    @Scheduled(cron = "0 0 12 * * *")
+    @Scheduled(cron = "0 0 14 * * *")
+    @PostMapping("/valentine")
+    public String diggy(){
+        String message = valentine.cute();
+        System.out.println(message);
+        return quoteService.sendSms(message);
+    }
+
 
     @GetMapping("/main")
     public String mainPage(){
