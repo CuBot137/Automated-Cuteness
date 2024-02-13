@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.MalformedURLException;
+
 @RestController
 @Slf4j
 public class QuoteController {
@@ -63,19 +67,20 @@ public class QuoteController {
             return quoteService.sendSms(message);
     }
 
-//    @PostMapping("/poop")
-//    @Scheduled(cron = "0 0 12 * * ?")
-//    public String sendTest () throws JsonProcessingException {
-//        String message = "Diggy Diggy Hole";
-//        return quoteService.sendSms(message);
-//    }
+    @PostMapping("/poop")
+    @Scheduled(cron = "0 0 12 * * ?")
+    public String sendTest () throws JsonProcessingException {
+        String message = "Diggy Diggy Hole";
+        return quoteService.sendSms(message);
+    }
 
     @Scheduled(cron = "0 0 8 * * *")
     @Scheduled(cron = "0 0 10 * * *")
     @Scheduled(cron = "0 0 12 * * *")
     @Scheduled(cron = "0 0 14 * * *")
+    @Scheduled(cron = "0 0 21 * * *")
     @PostMapping("/valentine")
-    public String diggy(){
+    public String diggy() throws IOException {
         String message = valentine.cute();
         System.out.println(message);
         return quoteService.sendSms(message);
