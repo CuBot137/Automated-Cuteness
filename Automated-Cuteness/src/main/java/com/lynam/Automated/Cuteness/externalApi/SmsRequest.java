@@ -6,8 +6,9 @@ import org.springframework.context.annotation.Configuration;
 @Data
 @Configuration
 public class SmsRequest {
+    // Model for sending message. Message content is handled by QuoteAPI
     private String destinationSmsNumber;
-//    private String smsMessage;
+
     @Override
     public String toString() {
         return "SmsRequest{" +

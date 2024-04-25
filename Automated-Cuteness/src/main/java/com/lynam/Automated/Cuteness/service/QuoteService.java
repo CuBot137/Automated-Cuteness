@@ -9,6 +9,7 @@ import com.twilio.Twilio;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import java.sql.SQLException;
 
@@ -19,26 +20,32 @@ public class QuoteService {
     @Autowired
     private TheRepo repo;
     private final TwilioSID twilioSID = new TwilioSID();
-    String twilioBean = twilioSID.getSIDTwilio();
-    String AUTH_TOKEN = twilioSID.getAuth();
-    String OUTGOING_SMSNUMBER = twilioSID.getOutgoingNumber();
-    String SENDER_NUMBER = twilioSID.getNumber();
+    @Value("${Twilio_SID}")
+    private String twilioBean;
+    @Value("${Twilio_Auth}")
+    String AUTH_TOKEN;
+    @Value("${TWILIO_NUMBER}")
+    String OUTGOING_SMSNUMBER;
+    @Value("${My_Number}")
+    String SENDER_NUMBER;
 
     // When the app is built it will log this information
     public QuoteService(){
         log.info("Creating class QuoteService");
     }
     // Twilio will be initialised after the program starts up
+
+    // Runs this method after the constructor is finished
     @PostConstruct
     private void setup(){
         Twilio.init(twilioBean, AUTH_TOKEN);
     }
+
     public String sendSms (String smsMessage){
         Message message = Message.creator(
                 new PhoneNumber(SENDER_NUMBER),
                 new PhoneNumber(OUTGOING_SMSNUMBER),
                 smsMessage).create();
-        //System.out.println("THIS IS THE VALUE OF TWILIOBEAN "+twilioBean);
         return message.getStatus().toString();
     }
 

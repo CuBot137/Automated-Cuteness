@@ -30,6 +30,7 @@ public class QuoteController {
         System.out.println(apiResponse);
         if (apiResponse != null) {
             try {
+                // Json deserialization
                 ObjectMapper mapper = new ObjectMapper();
                 String quote = mapper.readTree(apiResponse).findValue("content").asText();
                 String author = mapper.readTree(apiResponse).findValue("author").asText();
@@ -44,6 +45,7 @@ public class QuoteController {
             throw new NullPointerException("API response is null");
         }
     }
+
     // cron will run this method every day at 12 noon
     @PostMapping("/sms")
     @Scheduled(cron = "0 0 12 * * ?")
@@ -51,13 +53,4 @@ public class QuoteController {
             String message = getQuote();
             return quoteService.sendSms(message);
     }
-
-    @GetMapping("/main")
-    public String mainPage(){
-        return "Main.html";
-    }
-
-
-
-
 }
