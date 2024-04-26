@@ -1,8 +1,8 @@
 package com.lynam.Automated.Cuteness.service;
 
+import ClickSend.ApiClient;
 import com.lynam.Automated.Cuteness.model.TheModel;
 import com.lynam.Automated.Cuteness.repo.TheRepo;
-import com.lynam.Automated.Cuteness.twilio.TwilioSID;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import com.twilio.Twilio;
@@ -10,6 +10,9 @@ import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import java.sql.SQLException;
 
@@ -19,7 +22,6 @@ import java.sql.SQLException;
 public class QuoteService {
     @Autowired
     private TheRepo repo;
-    private final TwilioSID twilioSID = new TwilioSID();
     @Value("${Twilio_SID}")
     private String twilioBean;
     @Value("${Twilio_Auth}")
@@ -61,5 +63,20 @@ public class QuoteService {
         else{
             throw new SQLException("Model failed to save to database!");
         }
+    }
+
+
+
+    @Value("${USER_NAME}")
+    private String clickSendUsername;
+    @Value("${API_KEY}")
+    private String clickSendApiKey;
+    @Bean
+    @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+    public ApiClient clickSendConfig() {
+        ApiClient clickSendApiClient = new ApiClient();
+        clickSendApiClient.setUsername(clickSendUsername);
+        clickSendApiClient.setPassword(clickSendApiKey);
+        return clickSendApiClient;
     }
 }

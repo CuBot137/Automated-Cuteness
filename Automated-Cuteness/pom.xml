@@ -74,6 +74,13 @@
             </exclusions>
         </dependency>
         <dependency>
+            <groupId>com.github.clicksend</groupId>
+            <artifactId>clicksend-java-client</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
             <groupId>javax.transaction</groupId>
             <artifactId>jta</artifactId>
             <version>1.1</version>
