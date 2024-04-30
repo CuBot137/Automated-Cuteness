@@ -1,41 +1,33 @@
 package com.lynam.Automated.Cuteness.controller;
 
-import ClickSend.Api.SmsApi;
-import ClickSend.ApiClient;
-import ClickSend.ApiException;
-import ClickSend.Model.SmsMessage;
-import ClickSend.Model.SmsMessageCollection;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lynam.Automated.Cuteness.clicksend.MessageDetails;
+import com.lynam.Automated.Cuteness.email.EmailDetails;
+import com.lynam.Automated.Cuteness.email.EmailService;
 import com.lynam.Automated.Cuteness.externalApi.QuoteApi;
 import com.lynam.Automated.Cuteness.service.QuoteService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 @RestController
 @Slf4j
 public class QuoteController {
     @Autowired
-    private ApiClient clickSendConfig;
-    @Autowired
     private QuoteApi quoteApi;
-
-    private final QuoteService quoteService;
-
-    public QuoteController(QuoteApi quoteApi, QuoteService quoteService) {
-        this.quoteApi = quoteApi;
-        this.quoteService = quoteService;
-    }
+    @Autowired
+    private EmailService emailService;
+    @Autowired
+    private QuoteService quoteService;
+    @Value("${USER_NAME}")
+    private String email;
 
     @GetMapping("/quote")
     public String getQuote() throws JsonProcessingException {
@@ -59,39 +51,19 @@ public class QuoteController {
         }
     }
 
-    // cron will run this method every day at 12 noon
-    @PostMapping("/sms")
-    @Scheduled(cron = "0 0 12 * * ?")
-    public String sendSms () throws JsonProcessingException {
-            String message = getQuote();
-            return quoteService.sendSms(message);
+
+    @PostMapping("/sendMail")
+    public String
+    sendMail(@RequestBody EmailDetails details) {
+        String status = emailService.sendSimpleMail(details);
+        return status;
     }
 
 
-
-    @PostMapping("/sms1000")
-    public ResponseEntity<String> sendSMStoUpto1000Numbers(@RequestBody MessageDetails messageDetails) {
-        SmsApi smsApi = new SmsApi(clickSendConfig);
-
-        SmsMessage smsMessage = new SmsMessage();
-        smsMessage.body(messageDetails.getMessageBody());
-        smsMessage.listId(messageDetails.getListId());
-        smsMessage.source(messageDetails.getSendingSource());
-
-        List<SmsMessage> smsMessageList = List.of(smsMessage);
-
-        // SmsMessageCollection | SmsMessageCollection model
-        SmsMessageCollection smsMessages = new SmsMessageCollection();
-        smsMessages.messages(smsMessageList);
-
-        try {
-            String result = smsApi.smsSendPost(smsMessages);
-            return new ResponseEntity<>(result, HttpStatus.OK);
-        } catch (ApiException e) {
-            e.printStackTrace();
-        }
-
-        return new ResponseEntity<>("Exception when calling SmsApi#smsSendPost", HttpStatus.BAD_REQUEST);
+    @PostMapping("/sendMail")
+    public String sendMail() throws JsonProcessingException {
+        String quote = getQuote();
+        EmailDetails emailDetails = new EmailDetails(email,quote,"Email Service");
+        return emailService.sendSimpleMail(emailDetails);
     }
-
 }

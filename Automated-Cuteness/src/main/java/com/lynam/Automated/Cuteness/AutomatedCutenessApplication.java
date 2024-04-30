@@ -1,13 +1,8 @@
 package com.lynam.Automated.Cuteness;
 
-import ClickSend.ApiClient;
-import lombok.Value;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 // Allows methods to be run at specific times
@@ -19,11 +14,8 @@ public class AutomatedCutenessApplication {
 
 		applicationContext = SpringApplication.run(AutomatedCutenessApplication.class, args);
 
-
-
-
 	}
-
-
-
 }
+
+
+
