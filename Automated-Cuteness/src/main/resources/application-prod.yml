@@ -6,8 +6,8 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql:///postgres
-    user: postgres
-    password: spoon
+    username: ${DB_NAME}
+    password: ${DB_PASS}
     hikari:
       data-source-properties:
         socketFactory: com.google.cloud.sql.postgres.SocketFactory
@@ -18,3 +18,16 @@ spring:
       ddl-auto: create-drop
     properties:
       hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  mail:
+    host: smtp-relay.gmail.com
+    port: 587
+    username: ${USER_NAME}
+    password: ${APP_PASS}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    debug: true
