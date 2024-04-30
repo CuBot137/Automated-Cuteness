@@ -13,7 +13,7 @@ public class AutomatedCutenessApplication {
 	public static void main(String[] args) {
 
 		applicationContext = SpringApplication.run(AutomatedCutenessApplication.class, args);
-		// Testing5
+		// Testing6
 	}
 }
 
