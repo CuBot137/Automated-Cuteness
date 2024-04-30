@@ -9,7 +9,6 @@ import com.lynam.Automated.Cuteness.externalApi.QuoteApi;
 import com.lynam.Automated.Cuteness.service.QuoteService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,17 +49,13 @@ public class QuoteController {
             throw new NullPointerException("API response is null");
         }
     }
-
-
     @PostMapping("/sendMail")
     public String
     sendMail(@RequestBody EmailDetails details) {
         String status = emailService.sendSimpleMail(details);
         return status;
     }
-
-
-    @PostMapping("/sendMail")
+    @PostMapping("/mailQuote")
     public String sendMail() throws JsonProcessingException {
         String quote = getQuote();
         EmailDetails emailDetails = new EmailDetails(email,quote,"Email Service");
