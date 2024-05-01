@@ -1,4 +1,8 @@
 steps:
+  # Run Maven clean install
+  - name: 'maven:3.9.6-jdk-slim'  # Replace 'x' with the desired Maven version (e.g., maven:3.8-jdk-slim)
+    args: ['clean', 'install','-DskipTests']  # You can add '-DskipTests' here to skip tests during build
+
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/$_PROJECT_ID/auto-mail:$COMMIT_SHA', '.']
