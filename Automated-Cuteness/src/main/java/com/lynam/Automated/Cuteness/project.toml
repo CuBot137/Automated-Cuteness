@@ -1,0 +1,5 @@
+[[build.env]]
+name =  "GOOGLE_RUNTIME_VERSION"
+value = "17"
+builder = "gcr.io/cloud-builders/docker"
+options = ["--build-arg", "JAVA_VERSION=17"]
