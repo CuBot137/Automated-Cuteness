@@ -1,6 +1,5 @@
 server:
   port: 8080
-  address: 0.0.0.0
   servlet:
     context-path:
 
@@ -8,7 +7,7 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://postgres
+    url: jdbc:postgresql:///postgres
     username: postgres
     password: spoon
     hikari:
