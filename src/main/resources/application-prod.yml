@@ -7,7 +7,7 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql:///postgres
+    url: jdbc:postgresql:///auto-cute
     username: postgres
     password: spoon
     hikari:
