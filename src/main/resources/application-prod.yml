@@ -7,13 +7,13 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql:///auto-cute
+    url: jdbc:postgresql:///postgres
     username: postgres
     password: spoon
     hikari:
       data-source-properties:
         socketFactory: com.google.cloud.sql.postgres.SocketFactory
-        cloudSqlInstance: url-shortener-417915:us-central1:auto-cute
+        cloudSqlInstance: url-shortener-417915:europe-west1:bounty
 
   jpa:
     hibernate:
