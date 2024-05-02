@@ -13,7 +13,11 @@ spring:
     hikari:
       data-source-properties:
         socketFactory: com.google.cloud.sql.postgres.SocketFactory
-        cloudSqlInstance: url-shortener-417915:europe-west1:bounty
+        cloudSqlInstance: url-shortener-417915:europe-west4:mypostgres
+  cloud:
+      gcp:
+        sql:
+          enabled: false
 
   jpa:
     hibernate:
