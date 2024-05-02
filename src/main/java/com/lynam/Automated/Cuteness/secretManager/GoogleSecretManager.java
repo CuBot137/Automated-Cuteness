@@ -6,12 +6,14 @@ import com.google.protobuf.ByteString;
 import java.io.IOException;
 
 public class GoogleSecretManager {
-    public void googleSecretManager(){
+
+    public void googleSecretManager() throws IOException {
         String projectId = "url-shortener-417915";
         String DB_NAME_ID = "DB_NAME";
         String DB_PASS_ID = "DB_PASS";
         String APP_PASS_ID = "APP_PASS";
         String USER_NAME_ID = "USER_NAME";
+        getGoogleSecretManager(projectId,DB_NAME_ID,DB_PASS_ID,APP_PASS_ID,USER_NAME_ID);
     }
 
 
