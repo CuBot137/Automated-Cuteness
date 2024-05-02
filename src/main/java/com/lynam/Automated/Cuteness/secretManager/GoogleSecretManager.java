@@ -1,11 +1,11 @@
-package com.lynam.Automated.Cuteness.secretManager;
-
-import com.google.cloud.secretmanager.v1.*;
-import com.google.protobuf.ByteString;
-
-import java.io.IOException;
-
-public class GoogleSecretManager {
+//package com.lynam.Automated.Cuteness.secretManager;
+//
+//import com.google.cloud.secretmanager.v1.*;
+//import com.google.protobuf.ByteString;
+//
+//import java.io.IOException;
+//
+//public class GoogleSecretManager {
 
 
 
@@ -53,4 +53,4 @@ public class GoogleSecretManager {
 //            System.out.printf("Plaintext: %s\n", data1,data2,data3,data4);
 //        }
 //    }
-}
+//}

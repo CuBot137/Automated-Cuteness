@@ -19,10 +19,5 @@ steps:
       - '--region'
       - '$_REGION'
       - '--allow-unauthenticated'
-    env:
-      - 'DB_NAME=${_DB_NAME}'
-      - 'DB_PASS=${_DB_PASS}'
-      - 'APP_PASS=${_APP_PASS}'
-      - 'USER_NAME=${_USER_NAME}'
 images:
   - 'gcr.io/$_PROJECT_ID/auto-mail:$COMMIT_SHA'

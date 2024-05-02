@@ -1,5 +1,4 @@
 com\lynam\Automated\Cuteness\repo\TheRepo.class
-com\lynam\Automated\Cuteness\secretManager\GoogleSecretManager.class
 com\lynam\Automated\Cuteness\AutomatedCutenessApplication.class
 com\lynam\Automated\Cuteness\controller\QuoteController.class
 com\lynam\Automated\Cuteness\email\EmailServiceImpl.class
