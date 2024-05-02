@@ -15,9 +15,9 @@ import java.util.Properties;
 @ComponentScan(basePackages = "com/lynam/Automated/Cuteness")
 public class ProjectConfig {
 
-    @Value("${USER_NAME}")
+    @Value("${_USER_NAME}")
     private String name;
-    @Value("${APP_PASS}")
+    @Value("${_APP_PASS}")
     private String password;
     @Bean
     public JavaMailSender getJavaMailSender() {
@@ -42,7 +42,7 @@ public class ProjectConfig {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(name);
         message.setFrom(name);
-        message.setText("FATAL - Application crash. Save your job !!");
+        message.setText("FATAL - Application crash!");
         return message;
     }
 }
