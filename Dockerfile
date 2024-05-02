@@ -1,4 +1,10 @@
-FROM openjdk:17-jdk-alpine
+FROM maven:3.9.6 as builder
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+FROM builder
 ARG JAR_FILE=target/Automated-Cuteness-0.0.2-SNAPSHOT.jar
 COPY ${JAR_FILE} app.jar
 EXPOSE 8080
