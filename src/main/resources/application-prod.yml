@@ -6,8 +6,8 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql:///postgres
-    username: ${DB_NAME}
-    password: ${DB_PASS}
+    username: ${{ secrets.DB_NAME }}
+    password: ${{secrets.DB_PASS }}
     hikari:
       data-source-properties:
         socketFactory: com.google.cloud.sql.postgres.SocketFactory
@@ -22,8 +22,8 @@ spring:
   mail:
     host: smtp-relay.gmail.com
     port: 587
-    username: ${USER_NAME}
-    password: ${APP_PASS}
+    username: ${{ secrets.USER_NAME }}
+    password: ${{ secrets.APP_PASS }}
     properties:
       mail:
         smtp:
