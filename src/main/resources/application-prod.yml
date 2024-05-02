@@ -7,7 +7,7 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql:///[postgres]?cloudSqlInstance=url-shortener-417915:us-central1:auto-cute&socketFactory=com.google.cloud.sql.postgres.SocketFactory
+    url: jdbc:postgresql:///postgres
     username: postgres
     password: spoon
     hikari:
