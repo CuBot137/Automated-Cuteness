@@ -1,0 +1,36 @@
+server:
+  port: 8080
+  address: 0.0.0.0
+  servlet:
+    context-path:
+
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql:///postgres
+    username: ${DB_NAME}
+    password: ${DB_PASS}
+    hikari:
+      data-source-properties:
+        socketFactory: com.google.cloud.sql.postgres.SocketFactory
+        cloudSqlInstance: url-shortener-417915:us-central1:auto-cute
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  mail:
+    host: smtp-relay.gmail.com
+    port: 587
+    username: ${USER_NAME}
+    password: ${APP_PASS}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    debug: true
