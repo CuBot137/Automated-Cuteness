@@ -25,8 +25,8 @@ public class QuoteController {
     private EmailService emailService;
     @Autowired
     private QuoteService quoteService;
-//    @Value("${USER_NAME}")
-    private String email = "conorlynam1234@gmail.com";
+    @Value("${_USER_NAME}")
+    private String email;
 
     @GetMapping("/quote")
     public String getQuote() throws JsonProcessingException {
