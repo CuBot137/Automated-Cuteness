@@ -15,10 +15,10 @@ import java.util.Properties;
 @ComponentScan(basePackages = "com/lynam/Automated/Cuteness")
 public class ProjectConfig {
 
-    @Value("${USER_NAME}")
-    private String name;
-    @Value("${APP_PASS}")
-    private String password;
+//    @Value("${USER_NAME}")
+    private String name ="conorlynam1234@gmail.com";
+//    @Value("${APP_PASS}")
+    private String password = "kzyp uioh nyxg exlh";
     @Bean
     public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
