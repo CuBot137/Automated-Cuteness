@@ -15,9 +15,9 @@ import java.util.Properties;
 @ComponentScan(basePackages = "com/lynam/Automated/Cuteness")
 public class ProjectConfig {
 
-    @Value("${_USER_NAME}")
+    @Value("${USER_NAME}")
     private String name;
-    @Value("${_APP_PASS}")
+    @Value("${APP_PASS}")
     private String password;
     @Bean
     public JavaMailSender getJavaMailSender() {
