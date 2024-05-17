@@ -44,3 +44,14 @@ I encountered several learning opportunities throughout this project:
 ## Contributions
 
 Feel free to contribute or provide feedback. If you encounter issues or have suggestions, please open an issue.
+
+
+## Update
+Update
+
+Twilio, the sms service, have changed their policy. I can no longer use a trial account to get an Irish number. 
+For the time being this project does not work. As a part of a screening at work I decided to update this project. 
+Instead of using sms it now sends emails using Spring Mail.
+
+My favourite part of this new version is the bean I created to configure the email service.
+![img_1.png](img_1.png)
